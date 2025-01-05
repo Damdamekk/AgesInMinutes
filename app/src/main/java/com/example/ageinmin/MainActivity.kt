@@ -1,6 +1,7 @@
 package com.example.ageinmin
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -41,6 +42,13 @@ class MainActivity : AppCompatActivity() {
         btnDatePicker.setOnClickListener {
             clickDatePicker()
         }
+
+        val btnDaysActivity: Button = findViewById(R.id.btnDaysActivity)
+        btnDaysActivity.setOnClickListener {
+            val intent = Intent(this, DaysActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun clickDatePicker(){
@@ -87,3 +95,5 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
+
+

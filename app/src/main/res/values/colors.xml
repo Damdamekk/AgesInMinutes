@@ -7,4 +7,5 @@
     <color name="bg">#E9C46A</color>
     <color name="btnBg">#2A9D8F</color>
     <color name="light_blue">#8ECAE6</color>
+    <color name="change_activityClr">#ae2012</color>
 </resources>

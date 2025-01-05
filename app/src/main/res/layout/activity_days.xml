@@ -19,7 +19,7 @@
         android:textColor="@color/text"
         android:textStyle="bold"
         android:textSize="25sp"
-         />
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,14 +37,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="IN MINUTES"
+        android:text="IN DAYS"
         android:textColor="@color/text"
         android:textStyle="bold"
         android:textSize="25sp"
         />
 
     <Button
-        android:id="@+id/btnDatePicker"
+        android:id="@+id/btnDatePickerDays"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SELECT DATE"
@@ -53,7 +53,7 @@
         android:backgroundTint="@color/btnBg"/>
 
     <TextView
-        android:id="@+id/tvSelectedDate"
+        android:id="@+id/tvSelectedDateDays"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -73,7 +73,7 @@
         />
 
     <TextView
-        android:id="@+id/tvAgeInMinutes"
+        android:id="@+id/tvAgeInDays"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -86,17 +86,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="In minutes till date"
+        android:text="In days till date"
         android:textColor="@color/text2"
         android:textStyle="bold"
         android:textSize="20sp"
         />
 
     <Button
-        android:id="@+id/btnDaysActivity"
+        android:id="@+id/btnMinutesActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Check how old you are in days!"
+        android:text="Back to minutes"
         android:layout_marginTop="64dp"
         android:textColor="@color/white"
         android:backgroundTint="@color/change_activityClr"/>
