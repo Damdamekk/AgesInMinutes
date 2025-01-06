@@ -77,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="14000000"
+        android:text="00000000"
         android:textColor="@color/text"
         android:textSize="35sp"
         android:textStyle="bold" />
@@ -97,6 +97,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back to minutes"
+        android:layout_marginTop="64dp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/change_activityClr"/>
+
+    <Button
+        android:id="@+id/btnShareResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share Result"
         android:layout_marginTop="64dp"
         android:textColor="@color/white"
         android:backgroundTint="@color/change_activityClr"/>

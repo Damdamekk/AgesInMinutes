@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -19,6 +21,36 @@ class DaysActivity : AppCompatActivity() {
 
     private var tvSelectedDateDays : TextView? = null
     private var tvAgeInDays : TextView? = null
+    private var differenceInDays: Long = 0
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_share -> {
+                // Wywołanie funkcji udostępniania
+                shareResult("My age in days is $differenceInDays!")
+                return true
+            }
+
+            //R.id.action_about -> {
+            //Przekierowanie do nowej aktywności "O aplikacji"
+            //val intent = Intent(this, AboutActivity::class.java)
+            // startActivity(intent)
+            //return true
+            //}
+
+            R.id.action_settings -> {
+                // Przekierowanie do ustawień (np. permissions)
+                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +77,19 @@ class DaysActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val btnShareResult: Button = findViewById(R.id.btnShareResult)
+        btnShareResult.setOnClickListener {
+            val resultMessage = "My age in days is $differenceInDays!"
+            shareResult(resultMessage)
+        }
+
+    }
+
+    fun shareResult(result: String) {
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.type = "text/plain"
+        shareIntent.putExtra(Intent.EXTRA_TEXT, result)
+        startActivity(Intent.createChooser(shareIntent, "Share your result via"))
     }
 
         fun clickDatePickerDays(){
@@ -76,7 +121,7 @@ class DaysActivity : AppCompatActivity() {
 
                     val differenceInMillis = currentDateInMillis - selectedDateInMillis
 
-                    val differenceInDays = differenceInMillis / (1000 * 60 * 60 * 24)
+                    differenceInDays = differenceInMillis / (1000 * 60 * 60 * 24)
 
                     tvAgeInDays?.text = differenceInDays.toString()
 

@@ -2,7 +2,10 @@ package com.example.ageinmin
 
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -19,6 +22,38 @@ class MainActivity : AppCompatActivity() {
 
     private var tvSelectedDate : TextView? = null
     private var tvAgeInMinutes : TextView? = null
+    private var differenceInMinutes: Long = 0
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_share -> {
+                // Wywołanie funkcji udostępniania
+                shareResult("My age in minutes is $differenceInMinutes!")
+                return true
+            }
+
+            //R.id.action_about -> {
+            //Przekierowanie do nowej aktywności "O aplikacji"
+            //val intent = Intent(this, AboutActivity::class.java)
+            // startActivity(intent)
+            //return true
+            //}
+
+            R.id.action_settings -> {
+                // Przekierowanie do ustawień (np. permissions)
+                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +84,24 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
+        val btnShareResult: Button = findViewById(R.id.btnShareResult)
+        btnShareResult.setOnClickListener {
+            val resultMessage = "My age in minutes is $differenceInMinutes!"
+            shareResult(resultMessage)
+        }
+
     }
+
+
+    fun shareResult(result: String) {
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.type = "text/plain"
+        shareIntent.putExtra(Intent.EXTRA_TEXT, result)
+        startActivity(Intent.createChooser(shareIntent, "Share your result via"))
+    }
+
 
     private fun clickDatePicker(){
 
@@ -78,9 +130,10 @@ class MainActivity : AppCompatActivity() {
 
                 val currentDateInMinutes = currentDate.time / 60000
 
-                val differenceInMinutes = currentDateInMinutes - selectedDateInMinutes
+                differenceInMinutes = currentDateInMinutes - selectedDateInMinutes
 
                 tvAgeInMinutes?.text = differenceInMinutes.toString()
+
 
             },
             year,
